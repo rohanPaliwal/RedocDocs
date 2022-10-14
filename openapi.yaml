@@ -1,0 +1,123 @@
+---
+openapi: 3.0.0
+info:
+  description: This doc will have all the API's for node.js boiler plate application
+  version: 1.0.0
+  title: Demo Project
+tags:
+- name: Auth
+  description: This will contain all the API's for Auth Module
+- name: Products
+  description: This will contain all the API's for Products Module
+paths:
+  "/login":
+    post:
+      tags:
+      - Auth
+      summary: Login the user in the application
+      description: ''
+      operationId: login
+      requestBody:
+        description: Email Id and password to be sent in request body
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Logged In Successfully
+        '404':
+          description: Not Found
+  "/product":
+    get:
+      tags:
+      - Products
+      summary: get all products
+      description: get all products
+      parameters:
+      - in: header
+        name: token
+        description: Please provide with the JWT token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Logged In Successfully
+        '404':
+          description: Not Found
+    post:
+      tags:
+      - Products
+      summary: create a new product
+      description: create a new product
+      parameters:
+      - in: header
+        name: token
+        description: Please provide with the JWT token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Details of a product
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: string
+      responses:
+        '200':
+          description: Logged In Successfully
+        '404':
+          description: Not Found
+  "/product/{id}":
+    put:
+      tags:
+      - Products
+      summary: edit a product
+      description: edit a product
+      parameters:
+      - in: header
+        name: token
+        description: Please provide with the JWT token
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        description: Id of product to be edited
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Details of a product
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: string
+      responses:
+        '200':
+          description: Logged In Successfully
+        '404':
+          description: Not Found
